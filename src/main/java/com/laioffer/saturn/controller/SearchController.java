@@ -1,11 +1,16 @@
 package com.laioffer.saturn.controller;
 //import libraries
 
+import com.laioffer.saturn.model.Item;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+
 public class SearchController {
 
     //constructor
 
-    @GetMapping(value = "/search");
+    @GetMapping(value = "/search")
 
     public List<Item> searchItem() {
         //@RequestParam(name = "itemName") String itemName,
