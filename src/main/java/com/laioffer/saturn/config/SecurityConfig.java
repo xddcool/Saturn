@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
-=======
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -32,16 +31,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
+                .antMatchers("/search").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
                 .disable();
+
     }
 
 }
 
-=======
-                .antMatchers("/search").permitAll();
-    }
-}
+
+
+
+
 
