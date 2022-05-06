@@ -1,7 +1,7 @@
 package com.laioffer.saturn.controller;
 
-import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.model.Token;
+import com.laioffer.saturn.model.User;
 import com.laioffer.saturn.service.AuthenticationService;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -19,13 +19,9 @@ public class AuthenticationController {
     }
 
     @PostMapping("/authenticate/guest")
-    public Token authenticateGuest(@RequestBody Item item) {
-        return authenticationService.authenticate(item, UserRole.ROLE_GUEST);
+    public Token authenticateGuest(@RequestBody User user) {
+        return authenticationService.authenticate(user, UserRole.ROLE_GUEST);
     }
 
-    @PostMapping("/authenticate/host")
-    public Token authenticateHost(@RequestBody Item item) {
-        return authenticationService.authenticate(item, UserRole.ROLE_HOST);
-    }
 }
 

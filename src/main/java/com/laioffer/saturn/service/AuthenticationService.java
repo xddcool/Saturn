@@ -25,7 +25,7 @@ public class AuthenticationService {
         this.jwtUtil = jwtUtil;
     }
 
-    public Token authenticate(SecurityProperties.Item item, UserRole role) throws UserNotExistException {
+    public Token authenticate(SecurityProperties.User user, UserRole role) throws UserNotExistException {
         Authentication auth = null;
         try {
             auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
