@@ -2,7 +2,7 @@ package com.laioffer.saturn.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.Builder;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "item")
-@JsonDeserialize(builder = Builder.class)
+@JsonDeserialize(builder = Item.Builder.class)
 
 public class Item implements Serializable {
 

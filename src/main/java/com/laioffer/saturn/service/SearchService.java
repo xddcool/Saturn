@@ -38,10 +38,10 @@ public class SearchService {
 //            test.add(testItem);
 //            return test;
 
-        List<Long> itemIds = new ArrayList<>();
-        itemIds.add(1L);
-        itemIds.add(2L);
+//        List<Long> itemIds = new ArrayList<>();
+//        itemIds.add(1L);
+//        itemIds.add(2L);
 
-        return itemRepository.findById(itemIds);
+        return itemRepository.findItemByName(name);
     }
 }
