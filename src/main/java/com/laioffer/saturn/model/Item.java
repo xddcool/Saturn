@@ -25,7 +25,7 @@ public class Item implements Serializable {
 
     private String description;
 
-    private double price;
+    private Double price;
 
     public Item() {}
 
@@ -75,7 +75,7 @@ public class Item implements Serializable {
         private String description;
 
         @JsonProperty("price")
-        private double price;
+        private Double price;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -92,7 +92,7 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder setPrice(double price) {
+        public Builder setPrice(Double price) {
             this.price = price;
             return this;
         }

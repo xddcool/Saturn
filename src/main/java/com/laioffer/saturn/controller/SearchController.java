@@ -24,17 +24,17 @@ public class SearchController {
     @GetMapping(value = "/search")
 
     public List<Item> searchItem(
-        @RequestParam(name = "itemName") String itemName,
-        @RequestParam(name = "itemDesc") String itemDesc,
+        @RequestParam(name = "itemName", required = false) String itemName,
+        @RequestParam(name = "itemDesc", required = false) String itemDesc,
         //@RequestParam(name = "sellerName") String sellerName,
         //@RequestParam(name = "location") String loc,
         //@RequestParam(name = "rating") int rating,
-        @RequestParam(name = "priceMin") double priceMin,
-        @RequestParam(name = "priceMax") double priceMax){
+        @RequestParam(name = "priceMin", required = false) Double priceMin,
+        @RequestParam(name = "priceMax", required = false) Double priceMax){
         //@RequestParam(name = "category") String category,
 
         //check condition if condition not met throw expection
-        if (priceMin > priceMax) {
+        if (priceMin != null && priceMax != null && priceMin > priceMax) {
             throw new InvalidSearchPriceException("Price min must be lower or equal to price max!");
         }
 
