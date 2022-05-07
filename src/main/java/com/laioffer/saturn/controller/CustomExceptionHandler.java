@@ -13,6 +13,7 @@ public class CustomExceptionHandler {
     @ExceptionHandler(UserAlreadyExistException.class)
     public final ResponseEntity<String> handleUserAlreadyExistExceptions(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
+        // test
     }
 }
 
