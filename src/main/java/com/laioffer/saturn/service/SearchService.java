@@ -2,6 +2,8 @@ package com.laioffer.saturn.service;
 
 
 import com.laioffer.saturn.model.Item;
+import com.laioffer.saturn.repository.ItemRepository;
+import com.laioffer.saturn.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,29 +13,28 @@ import java.util.List;
 
 @Service
 public class SearchService {
+    private ItemRepository itemRepository;
+    private PriceRepository priceRepository;
+
     //declare fields
     //constructors
     @Autowired
-    public SearchService() {
-
+    public SearchService(ItemRepository itemRepository, PriceRepository priceRepository) {
+        this.itemRepository = itemRepository;
+        this.priceRepository = priceRepository;
     }
-    public List<Item> search(String name, String description, double priceMin, double priceMax) {
-        //corner case check
+    public List<Item> search(String name, String description, Double priceMin, Double priceMax) {
+        if (priceMin == null) {
+            priceMin = 0.0;
+        }
 
-        //main logic
+        if (priceMax == null) {
+            priceMax = Double.MAX_VALUE;
+        }
 
-//        for (Long stayId : stayIds) {
-//            if (!reservedStayIds.contains(stayId)) {
-//                filteredStayIds.add(stayId);
-//            }
-//        }
-            List<Item> test = new ArrayList<>();
-            Item testItem = new Item();
-            testItem.setName("Computer");
-            testItem.setDescription("This is my computer");
-            testItem.setPrice(1.1);
-            test.add(testItem);
+            return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
 
-        return test;
+
+        //return itemRepository.findItemByName(name);
     }
 }

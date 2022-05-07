@@ -1,21 +1,31 @@
 package com.laioffer.saturn.model;
 
+
 import org.springframework.data.annotation.Id;
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
+
 @Entity
 @Table(name = "user")
 @JsonDeserialize(builder = User.Builder.class)
 public class User implements Serializable {
+
     private static final long serialVersionUID = 1L;
+
     @Id
     private String username;
 
@@ -39,27 +49,30 @@ public class User implements Serializable {
         return username;
     }
 
-    public User setUsername(String username) {
+
+    public void setUsername(String username) {
         this.username = username;
-        return this;
+
     }
 
     public String getPassword() {
         return password;
     }
 
-    public User setPassword(String password) {
+
+    public void setPassword(String password) {
         this.password = password;
-        return this;
+
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public User setEnabled(boolean enabled) {
+
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-        return this;
+
     }
 
     public static class Builder {
@@ -91,4 +104,7 @@ public class User implements Serializable {
             return new User(this);
         }
     }
+
+
 }
+
