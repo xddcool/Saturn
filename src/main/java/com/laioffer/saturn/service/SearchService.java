@@ -2,28 +2,35 @@ package com.laioffer.saturn.service;
 
 
 import com.laioffer.saturn.model.Item;
+import com.laioffer.saturn.repository.CustomNameRepository;
+import com.laioffer.saturn.repository.CustomPriceRepository;
 import com.laioffer.saturn.repository.ItemRepository;
 import com.laioffer.saturn.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SearchService {
-    private ItemRepository itemRepository;
-    private PriceRepository priceRepository;
+    private final ItemRepository itemRepository;
+    private final PriceRepository priceRepository;
+    private final CustomNameRepository customNameRepository;
+    private final CustomPriceRepository customPriceRepository;
 
     //declare fields
     //constructors
     @Autowired
-    public SearchService(ItemRepository itemRepository, PriceRepository priceRepository) {
+    public SearchService(ItemRepository itemRepository, PriceRepository priceRepository, CustomNameRepository customNameRepository, CustomPriceRepository customPriceRepository) {
         this.itemRepository = itemRepository;
         this.priceRepository = priceRepository;
+        this.customNameRepository = customNameRepository;
+        this.customPriceRepository = customPriceRepository;
     }
     public List<Item> search(String name, String description, Double priceMin, Double priceMax) {
+
         if (priceMin == null) {
             priceMin = 0.0;
         }
@@ -32,9 +39,21 @@ public class SearchService {
             priceMax = Double.MAX_VALUE;
         }
 
-            return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
+        List<Item> itemByPrice = priceRepository.findItemsByPriceBetween(priceMin, priceMax);
+        List<Item> itemByName = itemRepository.findItemByName(name);
+//        List<Long> idByPrice = customPriceRepository.findIdByPrice(priceMin, priceMax);
+//        List<Long> idByName = customNameRepository.findIdByName(name);
+//
+//        List<Long> filteredItemIds = new ArrayList<>();
+//        for (Long itemId: idByPrice) {
+//            if (idByName.contains(itemId)) {
+//                filteredItemIds.add(itemId);
+//            }
+//        }
+//
+//
+        return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
 
 
-        //return itemRepository.findItemByName(name);
     }
 }

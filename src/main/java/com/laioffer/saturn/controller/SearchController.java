@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class SearchController {
 
-    private SearchService searchService;
+    private final SearchService searchService;
 
     @Autowired
     public SearchController(SearchService searchService) {

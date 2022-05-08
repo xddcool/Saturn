@@ -9,8 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class RegisterService {
-    private UserRepository userRepository;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Autowired

@@ -10,4 +10,9 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
     List<Item> findItemByName(String name);
+
+
+    //List<Item> findItemByNameContainsOrderById(String name);
+
+    //List<Item> findItemById(List<Long> ids);
 }

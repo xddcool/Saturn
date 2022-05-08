@@ -27,6 +27,8 @@ public class Item implements Serializable {
 
     private Double price;
 
+    private Long user_id;
+
     public Item() {}
 
     private Item(Builder builder) {

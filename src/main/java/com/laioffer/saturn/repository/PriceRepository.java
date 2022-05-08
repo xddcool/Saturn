@@ -10,4 +10,6 @@ import java.util.List;
 public interface PriceRepository extends JpaRepository<Item, Long> {
 
     List<Item> findItemsByPriceBetween(double priceMin, double priceMax);
+
+
 }
