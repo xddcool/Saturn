@@ -1,6 +1,7 @@
 package com.laioffer.saturn.service;
 
 
+import com.laioffer.saturn.exception.InvalidSearchPriceException;
 import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.repository.CustomNameRepository;
 import com.laioffer.saturn.repository.CustomPriceRepository;
@@ -29,7 +30,11 @@ public class SearchService {
         this.customNameRepository = customNameRepository;
         this.customPriceRepository = customPriceRepository;
     }
-    public List<Item> search(String name, String description, Double priceMin, Double priceMax) {
+    public List<Item> search(String name, String description, Double priceMin, Double priceMax) throws InvalidSearchPriceException {
+
+        if (priceMin != null && priceMax != null && priceMin > priceMax) {
+            throw new InvalidSearchPriceException("Price min must be lower or equal to price max!");
+        }
 
         if (priceMin == null) {
             priceMin = 0.0;
