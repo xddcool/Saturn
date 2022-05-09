@@ -3,13 +3,11 @@ package com.laioffer.saturn.controller;
 import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+@RestController
 public class ItemController {
 
     private ItemService itemService;
@@ -24,21 +22,12 @@ public class ItemController {
     //Item get mapping
 
     //Item edit mapping
-    @PutMapping(value = "/edit/{itemId}")
+    @PutMapping(value = "/items/{itemId}")
     public void editItem(
             @PathVariable Long itemId,
-            @RequestParam("itemName") String name,
-            @RequestParam("itemDesc") String description,
-            @RequestParam("itemPrice") Double price,
-            Principal principal) {
+            @RequestBody Item item){
 
-        Item item = new Item.Builder().setId(itemId)
-                .setDescription(description)
-                .setName(name)
-                .setPrice(price)
-                .build();
-
-        itemService.edit(item);
+        itemService.edit(item, itemId);
     }
 
 
