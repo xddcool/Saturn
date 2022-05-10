@@ -29,18 +29,18 @@ public class ItemService {
 
     //Item delete
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void delete(Long itemId, String username) throws ItemNotExistException {
+    public void delete(Long itemId) throws ItemNotExistException {
 
         // this api is for seller to delete his item
-        Item item = itemRepository.findByIdAndUser(itemId, new User.Builder().setUsername(username).build());
 
-        if (item == null) {
-            throw new ItemNotExistException("Item doesn't exist");
-        }
 
-        else {
-            itemRepository.deleteById(itemId);
+        if (!itemRepository.existsById(itemId)) {
+            throw new ItemNotExistException("No such item in the database");
         }
+        Item item = itemRepository.getById(itemId);
+
+        itemRepository.deleteById(itemId);
+
     }
 
     //Item add

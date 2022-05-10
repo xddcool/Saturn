@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search").permitAll()
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
                 .antMatchers(HttpMethod.PUT, "/items/*").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/items/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf()

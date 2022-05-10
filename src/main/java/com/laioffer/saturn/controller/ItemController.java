@@ -21,8 +21,8 @@ public class ItemController {
 
     //Item delete mapping
     @DeleteMapping("/items/{itemId}")
-    public void deleteItem(@PathVariable Long itemId, Principal principal) {
-        itemService.delete(itemId, principal.getName());
+    public void deleteItem(@PathVariable Long itemId) {
+        itemService.delete(itemId);
     }
 
     //Item add mapping
