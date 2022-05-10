@@ -2,6 +2,7 @@ package com.laioffer.saturn.controller;
 
 import com.laioffer.saturn.model.Token;
 import com.laioffer.saturn.model.User;
+import com.laioffer.saturn.model.UserRole;
 import com.laioffer.saturn.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ public class AuthenticationController {
 
     @PostMapping("/authenticate")
     public Token authenticate(@RequestBody User user) {
-        return authenticationService.authenticate(user);
+        return authenticationService.authenticate(user, UserRole.USER_ROLE);
     }
 
 

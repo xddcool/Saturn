@@ -1,6 +1,7 @@
 package com.laioffer.saturn.controller;
 
 import com.laioffer.saturn.model.User;
+import com.laioffer.saturn.model.UserRole;
 import com.laioffer.saturn.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,6 @@ public class RegisterController {
 
     @PostMapping("/register")
     public void addUser(@RequestBody User user) {
-        registerService.add(user);
+        registerService.add(user, UserRole.USER_ROLE);
     }
 }

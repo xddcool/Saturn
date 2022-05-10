@@ -27,7 +27,8 @@ public class Item implements Serializable {
 
     private Double price;
 
-    private Long user_id;
+    @JoinColumn
+    private String username;
 
     public Item() {}
 

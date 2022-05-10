@@ -18,6 +18,8 @@ import com.laioffer.saturn.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ItemService {
     private ItemRepository itemRepository;
@@ -44,9 +46,15 @@ public class ItemService {
     }
 
     //Item add
-
+    public void add(Item item) {
+        itemRepository.save(item);
+    }
 
     //Item get
+
+    public List<Item> get(User user) {
+        return itemRepository.findItemByUsername(user.getUsername());
+    }
 
     //Item edit
     public void edit(Item item, Long id) throws ItemNotExistException {

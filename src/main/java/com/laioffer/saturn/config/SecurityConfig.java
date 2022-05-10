@@ -45,8 +45,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/register").permitAll()
                 .antMatchers("/search").permitAll()
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
+
+                .antMatchers(HttpMethod.GET, "/items").permitAll()
+                .antMatchers(HttpMethod.POST, "/items").permitAll()
                 .antMatchers(HttpMethod.PUT, "/items/*").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/items/*").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
@@ -60,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, password, enabled FROM user WHERE username = ?")
 
-                .authoritiesByUsernameQuery("SELECT username, password, enabled FROM user WHERE username = ?");
+                .authoritiesByUsernameQuery("SELECT username, authority FROM authority WHERE username = ?");
     }
 
 }
