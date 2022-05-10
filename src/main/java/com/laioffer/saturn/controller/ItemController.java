@@ -1,9 +1,11 @@
 package com.laioffer.saturn.controller;
 
+
 import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.security.Principal;
 
@@ -15,6 +17,12 @@ public class ItemController {
     @Autowired
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
+    }
+
+    //Item delete mapping
+    @DeleteMapping("/items/{itemId}")
+    public void deleteItem(@PathVariable Long itemId, Principal principal) {
+        itemService.delete(itemId, principal.getName());
     }
 
     //Item add mapping
@@ -29,9 +37,5 @@ public class ItemController {
 
         itemService.edit(item, itemId);
     }
-
-
-
-    //Item delete mapping
 
 }
