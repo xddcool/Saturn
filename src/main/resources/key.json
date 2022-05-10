@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "daniel-staybooking-project",
+  "private_key_id": "5ab9649a8cafcdb19f5161fb754225c65de3e14a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQClAyKKu2rIZR2p\nEZd0nqXTwgGLsoiOO3Ne0rivstc/8qjOrMEGCydsgBilh7RMINWCaFGpENGfkrle\nTuvVOid+RLiTSXgl8FRo3VZjiNv1ufv9qNEQ/+2GxfrFra23LA6adrepM9ttIiE6\nOQx54mQlUVYdFk9QoVfnr5WNl4Ey6DPmIPA1eorvZq93htJqQyrimCm4M1RAh8EZ\n3/sQjcAsgdSCaBV5pkNF2j2GPT0Ub61Nns/WBWgp8tnbU1o4gi3IOxdMsxmMkoyr\n9tiZwx7jI3kV4i7xjLnYIcHkOhs1EdoNBi3iPrbK6mZfaY878Dqli/b0fKGeWoNc\nPQCmEUN3AgMBAAECggEATCmTQudYVSBevU9yUZB8R64PGpSP9N451PV76xSnx0tQ\nYPxZp1l0m97QAW8OZ+jrw2I09szdhEKrrnzM20EZQ22ip9DMVO6Fd1VZ710W8Wcj\niSPnQ2ptDrzIj38nZBlAsEjFYqKdz9Rl88KrIIK+6H6POaO3fibKNRTU+WKJbp4C\njiqvirh4Qf9+DZDIv9veRyDFCACtBXU2Dh5vr0bN+EXg7+INOCx4d5vedPfpL5wp\njnPTj0Lm7OOQ31u2iV1CjQYg9PVK0WJv5HAhY9mCpw06tOG24ddHzqTn/0pyP6/n\nWUIOSAOiQ4PD0CXdV7j9qLti0ZwdNDtTWAElNUw7oQKBgQDXW5E4umPrc0HhVEhF\nAqDKbu+fiXQA801fSdVnFjAC2lGjoFXncAxt3YbImkms60sZX534IPNhhYTsb9Va\n1urxZGpU7tdkOLPZzBwYcBdY6kMFBvUAgHIYBjqAUdd6i8aBoKv3+vnwbCB9q8oq\n+0ROm6q4Wp/kMNbQqdQzC5EpcQKBgQDEJ0MNU7N4OIAax2d+fvHi5uIHN91V1udU\nVi1YmEzahJ7/FG9ZYAUoN9rkGB3+6aqw5vEcEBzH7JK1xGrYtEkLzzKm5zZKaF2I\nX7TJY0EzrKjAV/nv8hauzY5FEL5wZ1TqtwB69ixBRR6yqmI3XANTWZFj/9woVs2x\nxYpQrz+HZwKBgHrLAyrNXFvMBCxu2iY/MV87kfXtce94yw0iFEQLKqT1xsb9jP3B\nrdSXE1seXhPytYdqNbBdWWipsPj/ay+4i43IK7jx1m6WxjXRY9OrViSkrkIXjWsT\n0fpQ0tqHz81YFX+kFWn3+LtVa9E8OrH3QyNvLxCe27xI/LNNomjYl5SBAoGAWT1j\njBSgefl6jrRZqXsnoQtZmd8Ym40CAaSTTNM9Y80iaPprDkZZEksXEt7GBstYFNN8\nrj/GWE6REJEj6yNaeDzz1msqj/+bTgf8wAKgD1pmC9v6oeeJ2k06hMFxYsIgKAjJ\n9yc4SxmfNbm+pWD/QlRliRFGoDOdsVsl6j9Qr9ECgYAHhCwDJ4o/ozQDIew5wqmH\nOiVo71ciqImtVUJiLLv3RZsDNUdZAPYGwNl202NPiRPsc33IvHKSsTU++vkcSkSi\ntfg76R+07OZAZbelXf+BZ/bCgXy6zM/AcsCSHazniUZLqLXKavqAmL3cV7UlTjXB\nBVkjF407Dy2NAjSW67XcSw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "staybooking-service-account@daniel-staybooking-project.iam.gserviceaccount.com",
+  "client_id": "113357887959140231990",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/staybooking-service-account%40daniel-staybooking-project.iam.gserviceaccount.com"
+}

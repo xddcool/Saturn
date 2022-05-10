@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
+import java.util.List;
 
 
 @Entity
@@ -30,6 +30,9 @@ public class Item implements Serializable {
     @JoinColumn
     private String username;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<ItemImage> images;
+
     public Item() {}
 
     private Item(Builder builder) {
@@ -37,6 +40,7 @@ public class Item implements Serializable {
         this.name = builder.name;
         this.description = builder.description;
         this.price = builder.price;
+        this.images = builder.images;
 
     }
     public Long getId() {return id;}
@@ -67,6 +71,15 @@ public class Item implements Serializable {
         this.price = price;
     }
 
+    public List<ItemImage> getImages() {
+        return images;
+    }
+
+    public Item setImages(List<ItemImage> images) {
+        this.images = images;
+        return this;
+    }
+
     public static class Builder {
         @JsonProperty("id")
         private Long id;
@@ -79,6 +92,9 @@ public class Item implements Serializable {
 
         @JsonProperty("price")
         private Double price;
+
+        @JsonProperty("images")
+        private List<ItemImage> images;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -97,6 +113,11 @@ public class Item implements Serializable {
 
         public Builder setPrice(Double price) {
             this.price = price;
+            return this;
+        }
+
+        public Builder setImages(List<ItemImage> images) {
+            this.images = images;
             return this;
         }
 

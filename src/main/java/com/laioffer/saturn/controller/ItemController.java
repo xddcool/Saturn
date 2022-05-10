@@ -31,21 +31,23 @@ public class ItemController {
     //Item add mapping
 
     @PostMapping("/items")
-    public void addStay(
+    public void addItem(
             @RequestParam("itemName") String name,
             @RequestParam("itemDesc") String description,
-            @RequestParam("itemPrice") Double price) {
+            @RequestParam("itemPrice") Double price,
+            @RequestParam("itemImages") MultipartFile[] images) {
 
         Item item = new Item.Builder().setName(name)
                 .setDescription(description)
                 .setPrice(price)
+
                 .build();
-        itemService.add(item);
+        itemService.add(item, images);
     }
 
     //Item get mapping
     @GetMapping(value = "/items")
-    public List<Item> listStays(User user) {
+    public List<Item> listItems(User user) {
         return itemService.get(user);
     }
 

@@ -1,9 +1,8 @@
 package com.laioffer.saturn.controller;
 
-import com.laioffer.saturn.exception.InvalidSearchPriceException;
-import com.laioffer.saturn.exception.ItemNotExistException;
-import com.laioffer.saturn.exception.UserAlreadyExistException;
-import com.laioffer.saturn.exception.UserNotExistException;
+
+
+import com.laioffer.saturn.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,6 +30,11 @@ public class CustomExceptionHandler {
     @ExceptionHandler(InvalidSearchPriceException.class)
     public final ResponseEntity<String> handleInvalidSearchPriceException(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(GCSUploadException.class)
+    public final ResponseEntity<String> handleGCSUploadExceptions(Exception ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
