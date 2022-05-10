@@ -26,6 +26,12 @@ public class User implements Serializable {
     private String password;
 
     @JsonIgnore
+    private String email;
+
+    @JsonIgnore
+    private String phoneNumber;
+
+    @JsonIgnore
     private boolean enabled;
 
     public User() {}
@@ -33,6 +39,8 @@ public class User implements Serializable {
     private User(Builder builder) {
         this.username = builder.username;
         this.password = builder.password;
+        this.email = builder.email;
+        this.phoneNumber = builder.phoneNumber;
         this.enabled = builder.enabled;
     }
 
@@ -41,24 +49,45 @@ public class User implements Serializable {
         return username;
     }
 
-    public void setUsername(String username) {
+    public User setUsername(String username) {
         this.username = username;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public User setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public User setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        return this;
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public User setEnabled(boolean enabled) {
         this.enabled = enabled;
+        return this;
     }
 
     public static class Builder {
@@ -67,6 +96,12 @@ public class User implements Serializable {
 
         @JsonProperty("password")
         private String password;
+
+        @JsonProperty(value = "email", required = true)
+        private String email;
+
+        @JsonProperty("phone_number")
+        private String phoneNumber;
 
         @JsonProperty("enabled")
         private boolean enabled;
@@ -78,6 +113,16 @@ public class User implements Serializable {
 
         public Builder setPassword(String password) {
             this.password = password;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder setPhoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
             return this;
         }
 
