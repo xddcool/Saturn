@@ -24,8 +24,8 @@ public class ItemController {
 
     //Item delete mapping
     @DeleteMapping("/items/{itemId}")
-    public void deleteItem(@PathVariable Long itemId) {
-        itemService.delete(itemId);
+    public void deleteItem(@PathVariable Long itemId, Principal principal) {
+        itemService.delete(itemId, principal);
     }
 
     //Item add mapping
@@ -48,8 +48,8 @@ public class ItemController {
 
     //Item get mapping
     @GetMapping(value = "/items")
-    public List<Item> listItems(User user) {
-        return itemService.get(user);
+    public List<Item> listItems(Principal principal) {
+        return itemService.get(principal);
     }
 
     //Item edit mapping
@@ -59,7 +59,7 @@ public class ItemController {
             @RequestBody Item item,
             Principal principal){
 
-        itemService.edit(item, itemId);
+        itemService.edit(item, itemId, principal);
     }
 
 }

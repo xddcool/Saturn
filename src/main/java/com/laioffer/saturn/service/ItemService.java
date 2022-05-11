@@ -2,6 +2,7 @@ package com.laioffer.saturn.service;
 
 
 
+import com.laioffer.saturn.exception.ItemDoesNotBelongException;
 import com.laioffer.saturn.model.ItemImage;
 import com.laioffer.saturn.model.User;
 
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,7 +40,7 @@ public class ItemService {
 
     //Item delete
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void delete(Long itemId) throws ItemNotExistException {
+    public void delete(Long itemId, Principal principal) throws ItemNotExistException {
 
         // this api is for seller to delete his item
 
@@ -46,7 +48,13 @@ public class ItemService {
         if (!itemRepository.existsById(itemId)) {
             throw new ItemNotExistException("No such item in the database");
         }
-        Item item = itemRepository.getById(itemId);
+
+        if (itemRepository.findItemByIdAndUsername(itemId, principal.getName()) == null) {
+            throw new ItemDoesNotBelongException("You don't own this item");
+        }
+
+        Item item = itemRepository.findItemByIdAndUsername(itemId, principal.getName());
+
 
         itemRepository.deleteById(itemId);
 
@@ -66,17 +74,23 @@ public class ItemService {
 
     //Item get
 
-    public List<Item> get(User user) {
-        return itemRepository.findItemByUsername(user.getUsername());
+    public List<Item> get(Principal principal) {
+        return itemRepository.findItemByUsername(principal.getName());
     }
 
     //Item edit
-    public void edit(Item item, Long id) throws ItemNotExistException {
+    public void edit(Item item, Long id, Principal principal) throws ItemNotExistException {
         if (!itemRepository.existsById(id)) {
             throw new ItemNotExistException("No such item in the database");
         }
 
-        Item oldItem = itemRepository.getById(id);
+
+        Item oldItem = itemRepository.findItemByIdAndUsername(id, principal.getName());
+
+        if (oldItem == null) {
+            throw new ItemDoesNotBelongException("You don't own this item");
+        }
+
         oldItem.setPrice(item.getPrice());
         oldItem.setDescription(item.getDescription());
         oldItem.setName(item.getName());

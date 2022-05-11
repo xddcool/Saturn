@@ -51,10 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/search").permitAll()
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/items").permitAll()
+                .antMatchers(HttpMethod.GET, "/items").hasAuthority("USER_ROLE")
                 .antMatchers(HttpMethod.POST, "/items").hasAuthority("USER_ROLE")
-                .antMatchers(HttpMethod.PUT, "/items/*").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/items/*").permitAll()
+                .antMatchers(HttpMethod.PUT, "/items/*").hasAuthority("USER_ROLE")
+                .antMatchers(HttpMethod.DELETE, "/items/*").hasAuthority("USER_ROLE")
 
                 .anyRequest().authenticated()
                 .and()

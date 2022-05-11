@@ -23,7 +23,12 @@ public class CustomExceptionHandler {
     }
 
     @ExceptionHandler(ItemNotExistException.class)
-    public final ResponseEntity<String> handleReservationNotFoundExceptions(Exception ex, WebRequest request) {
+    public final ResponseEntity<String> handleItemNotFoundExceptions(Exception ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ItemDoesNotBelongException.class)
+    public final ResponseEntity<String> handleItemDoesNotBelongExceptions(Exception ex, WebRequest request) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
