@@ -106,6 +106,7 @@ public class User implements Serializable {
         @JsonProperty("enabled")
         private boolean enabled;
 
+
         public Builder setUsername(String username) {
             this.username = username;
             return this;

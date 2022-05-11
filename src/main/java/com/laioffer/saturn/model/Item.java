@@ -39,13 +39,22 @@ public class Item implements Serializable {
         this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
+        this.username = builder.username;
         this.price = builder.price;
         this.images = builder.images;
 
     }
     public Long getId() {return id;}
 
-    public void setId(Long id) {this.name = name;}
+    public void setId(Long id) {this.id = id;}
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getName() {
         return name;
@@ -96,6 +105,9 @@ public class Item implements Serializable {
         @JsonProperty("images")
         private List<ItemImage> images;
 
+        @JsonProperty("username")
+        private String username;
+
         public Builder setId(Long id) {
             this.id = id;
             return this;
@@ -113,6 +125,11 @@ public class Item implements Serializable {
 
         public Builder setPrice(Double price) {
             this.price = price;
+            return this;
+        }
+
+        public Builder setUsername(String username) {
+            this.username = username;
             return this;
         }
 

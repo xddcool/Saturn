@@ -35,12 +35,13 @@ public class ItemController {
             @RequestParam("itemName") String name,
             @RequestParam("itemDesc") String description,
             @RequestParam("itemPrice") Double price,
-            @RequestParam("itemImages") MultipartFile[] images) {
+            @RequestParam("itemImages") MultipartFile[] images,
+            Principal principal) {
 
         Item item = new Item.Builder().setName(name)
                 .setDescription(description)
                 .setPrice(price)
-
+                .setUsername(principal.getName())
                 .build();
         itemService.add(item, images);
     }
