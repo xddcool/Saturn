@@ -33,6 +33,10 @@ public class Item implements Serializable {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<ItemImage> images;
 
+    private Status status;
+
+    private String askBy;
+
     public Item() {}
 
     private Item(Builder builder) {
@@ -42,6 +46,8 @@ public class Item implements Serializable {
         this.username = builder.username;
         this.price = builder.price;
         this.images = builder.images;
+        this.status = builder.status;
+        this.askBy = builder.askBy;
 
     }
     public Long getId() {return id;}
@@ -54,6 +60,16 @@ public class Item implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getName() {
@@ -76,7 +92,7 @@ public class Item implements Serializable {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -87,6 +103,14 @@ public class Item implements Serializable {
     public Item setImages(List<ItemImage> images) {
         this.images = images;
         return this;
+    }
+
+    public String getAskBy() {
+        return askBy;
+    }
+
+    public void setAskBy(String askBy) {
+        this.askBy = askBy;
     }
 
     public static class Builder {
@@ -107,6 +131,12 @@ public class Item implements Serializable {
 
         @JsonProperty("username")
         private String username;
+
+        @JsonProperty("status")
+        private Status status;
+
+        @JsonProperty("askBy")
+        private String askBy;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -135,6 +165,16 @@ public class Item implements Serializable {
 
         public Builder setImages(List<ItemImage> images) {
             this.images = images;
+            return this;
+        }
+
+        public Builder setStatus(Status status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder setAskBy(String askBy) {
+            this.askBy = askBy;
             return this;
         }
 

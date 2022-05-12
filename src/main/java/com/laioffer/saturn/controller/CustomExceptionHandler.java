@@ -29,7 +29,12 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(ItemDoesNotBelongException.class)
     public final ResponseEntity<String> handleItemDoesNotBelongExceptions(Exception ex, WebRequest request) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(CanNotAskOwnItemException.class)
+    public final ResponseEntity<String> handleCanNotAskOwnItemExceptions(Exception ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(InvalidSearchPriceException.class)

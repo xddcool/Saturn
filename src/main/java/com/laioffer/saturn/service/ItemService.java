@@ -2,8 +2,10 @@ package com.laioffer.saturn.service;
 
 
 
+import com.laioffer.saturn.exception.CanNotAskOwnItemException;
 import com.laioffer.saturn.exception.ItemDoesNotBelongException;
 import com.laioffer.saturn.model.ItemImage;
+import com.laioffer.saturn.model.Status;
 import com.laioffer.saturn.model.User;
 
 
@@ -76,6 +78,47 @@ public class ItemService {
 
     public List<Item> get(Principal principal) {
         return itemRepository.findItemByUsername(principal.getName());
+    }
+
+    public List<Item> getAsk(Principal principal) {
+        return itemRepository.findItemByUsernameAndStatus(principal.getName(), Status.ASKED);
+    }
+
+    //Item Change status to "ASK"
+    public void ask(Long itemId, Principal principal) {
+
+        Item item = itemRepository.findItemById(itemId);
+
+        if (item == null) {
+            throw new ItemNotExistException("No such item in the database");
+        }
+
+        if (item.getUsername().equals(principal.getName())) {
+            throw new CanNotAskOwnItemException("You can't ask your own item");
+        }
+
+
+
+        item.setStatus(Status.ASKED);
+        item.setAskBy(principal.getName());
+        itemRepository.save(item);
+    }
+
+    //Item Change status to "SOLD"
+    public void sold(Long itemId, Principal principal) {
+
+        Item item = itemRepository.findItemById(itemId);
+
+        if (item == null) {
+            throw new ItemNotExistException("No such item in the database");
+        }
+
+        if (!item.getUsername().equals(principal.getName())) {
+            throw new CanNotAskOwnItemException("You can't sell your other people's item");
+        }
+
+        item.setStatus(Status.SOLD);
+        itemRepository.save(item);
     }
 
     //Item edit

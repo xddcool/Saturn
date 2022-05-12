@@ -97,7 +97,7 @@ public class User implements Serializable {
         @JsonProperty("password")
         private String password;
 
-        @JsonProperty(value = "email", required = true)
+        @JsonProperty(value = "email")
         private String email;
 
         @JsonProperty("phone_number")
