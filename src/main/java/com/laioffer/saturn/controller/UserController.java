@@ -28,8 +28,6 @@ public class UserController {
     @PutMapping(value = "/user")
     public void updateUser(@RequestParam("email") String email, @RequestParam("phone_number") String phone_number, Principal principal) {
         User user = new User.Builder()
-                .setUsername("place_holder")
-                .setPassword("place_holder")
                         .setEmail(email)
                         .setPhoneNumber(phone_number)
                         .build();
