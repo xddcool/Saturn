@@ -25,10 +25,10 @@ public class User implements Serializable {
     @JsonIgnore
     private String password;
 
-    @JsonIgnore
+
     private String email;
 
-    @JsonIgnore
+
     private String phoneNumber;
 
     @JsonIgnore

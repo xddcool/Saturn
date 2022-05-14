@@ -58,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT, "/sold/*").hasAuthority("USER_ROLE")
                 .antMatchers(HttpMethod.POST, "/favorite/*").hasAuthority("USER_ROLE")
 
+                //.antMatchers(HttpMethod.PUT, "/user").hasAuthority("USER_ROLE")
+
                 .anyRequest().authenticated()
                 .and()
                 .csrf()
