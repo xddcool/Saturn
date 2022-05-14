@@ -45,6 +45,7 @@ public class ItemController {
                 .setUsername(principal.getName())
                 .setStatus(Status.FOR_SALE)
                 .build();
+
         itemService.add(item, images);
     }
     //Change item status to ask

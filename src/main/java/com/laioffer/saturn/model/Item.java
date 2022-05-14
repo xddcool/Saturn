@@ -33,6 +33,7 @@ public class Item implements Serializable {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<ItemImage> images;
 
+    @Enumerated(value = EnumType.STRING)
     private Status status;
 
     private String askBy;
