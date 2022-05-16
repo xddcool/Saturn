@@ -3,13 +3,11 @@ package com.laioffer.saturn.controller;
 import com.laioffer.saturn.model.Favorite;
 import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.model.Status;
+import com.laioffer.saturn.model.User;
 import com.laioffer.saturn.service.FavoriteService;
 import com.laioffer.saturn.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
@@ -28,11 +26,15 @@ public class FavoriteController {
             @PathVariable Long itemId,
             Principal principal) {
 
-        Favorite favoriteItem = new Favorite.Builder().setUsername(principal.getName())
-                .setItemId(itemId)
-                .build();
-        System.out.println("here");
-        favoriteService.setFavoriteItem(favoriteItem);
+        favoriteService.setFavoriteItem(itemId, principal);
+    }
+
+    @DeleteMapping("/favorite/{itemId}")
+    public void deleteFavoriteItem(
+            @PathVariable Long itemId,
+            Principal principal) {
+
+        favoriteService.deleteFavoriteItem(itemId, principal);
     }
 
 }

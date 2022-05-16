@@ -19,7 +19,11 @@ public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
+
+//    @OneToMany(mappedBy = "item_id")
+//    private List<Favorite> favorites;
 
     private String name;
 

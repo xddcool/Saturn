@@ -15,11 +15,20 @@ public class Favorite implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String username;
 
+    public Long getId() {
+        return id;
+    }
 
-    @JsonProperty("item_Id")
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @JsonProperty("item_id")
     //@Column(name = "itemId")
     private Long itemId;
 
@@ -43,14 +52,14 @@ public class Favorite implements Serializable {
 
     public Favorite(Builder builder) {
         this.username = builder.username;
-        this.itemId = itemId;
+        this.itemId = builder.itemId;
     }
 
     public static class Builder {
         @JsonProperty("username")
         private String username;
 
-        @JsonProperty("itemId")
+        @JsonProperty("item_id")
         private Long itemId;
 
         public Builder setUsername(String username) {

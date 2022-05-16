@@ -1,9 +1,7 @@
 package com.laioffer.saturn.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
