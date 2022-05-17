@@ -11,5 +11,8 @@ import java.util.Set;
 @Repository
 public interface CustomNameRepository extends JpaRepository<Item, Long> {
     @Query(value = "SELECT i.id From Item i WHERE i.name like %?1%")
-    List<Long> findItem(String name);
+    List<Long> findItemByName(String name);
+
+    @Query(value = "SELECT i.id From Item i WHERE i.description like %?1%")
+    List<Long> findItemByDesc(String name);
 }

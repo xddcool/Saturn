@@ -54,21 +54,17 @@ public class SearchService {
 
         //List<Item> itemByName = itemRepository.findItemByNameContaining(name);
         List<Item> itemByName = new ArrayList<>();
-        List<Long> itemByNameId =customNameRepository.findItem(name);
-        for (Long itemId: itemByNameId) {
-            itemByName.add(itemRepository.findItemById(itemId));
+        List<Long> itemIdByName = customNameRepository.findItemByName(name);
+        List<Long> itemIdByDesc = customNameRepository.findItemByDesc(description);
+
+
+        for (Long itemId: itemIdByName) {
+            if (itemIdByDesc.contains(itemId)) {
+                itemByName.add(itemRepository.findItemById(itemId));
+            }
+
         }
 
-//        List<Long> idByPrice = customPriceRepository.findIdByPrice(priceMin, priceMax);
-//        List<Long> idByName = customNameRepository.findIdByName(name);
-//
-//        List<Long> filteredItemIds = new ArrayList<>();
-//        for (Long itemId: idByPrice) {
-//            if (idByName.contains(itemId)) {
-//                filteredItemIds.add(itemId);
-//            }
-//        }
-//
         List<Item> filteredItem = new ArrayList<>();
 
         for (Item item : itemByPrice) {
