@@ -52,7 +52,12 @@ public class SearchService {
 //        List<Item> itemByName = itemRepository.findItemsById(itemIdsByName);
 
 
-        List<Item> itemByName = itemRepository.findItemByNameContaining(name);
+        //List<Item> itemByName = itemRepository.findItemByNameContaining(name);
+        List<Item> itemByName = new ArrayList<>();
+        List<Long> itemByNameId =customNameRepository.findItem(name);
+        for (Long itemId: itemByNameId) {
+            itemByName.add(itemRepository.findItemById(itemId));
+        }
 
 //        List<Long> idByPrice = customPriceRepository.findIdByPrice(priceMin, priceMax);
 //        List<Long> idByName = customNameRepository.findIdByName(name);
@@ -64,15 +69,15 @@ public class SearchService {
 //            }
 //        }
 //
-//        List<Item> filteredItem = new ArrayList<>();
-//
-//        for (Item item : itemByPrice) {
-//            if (itemByName.contains(item)) {
-//                filteredItem.add(item);
-//            }
-//        }
+        List<Item> filteredItem = new ArrayList<>();
 
-        return itemByName;
+        for (Item item : itemByPrice) {
+            if (itemByName.contains(item)) {
+                filteredItem.add(item);
+            }
+        }
+
+        return filteredItem;
         //return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
 
 
