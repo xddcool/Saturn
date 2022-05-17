@@ -40,7 +40,7 @@ public class Item implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    private String askBy;
+    //private Long askId;
 
     public Item() {}
 
@@ -52,7 +52,7 @@ public class Item implements Serializable {
         this.price = builder.price;
         this.images = builder.images;
         this.status = builder.status;
-        this.askBy = builder.askBy;
+        //this.askId = builder.askId;
 
     }
     public Long getId() {return id;}
@@ -110,13 +110,13 @@ public class Item implements Serializable {
         return this;
     }
 
-    public String getAskBy() {
-        return askBy;
-    }
-
-    public void setAskBy(String askBy) {
-        this.askBy = askBy;
-    }
+//    public Long getAskId() {
+//        return askId;
+//    }
+//
+//    public void setAskId(Long askId) {
+//        this.askId = askId;
+//    }
 
     public static class Builder {
         @JsonProperty("id")
@@ -140,8 +140,8 @@ public class Item implements Serializable {
         @JsonProperty("status")
         private Status status;
 
-        @JsonProperty("askBy")
-        private String askBy;
+//        @JsonProperty("ask_id")
+//        private Long askId;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -178,10 +178,10 @@ public class Item implements Serializable {
             return this;
         }
 
-        public Builder setAskBy(String askBy) {
-            this.askBy = askBy;
-            return this;
-        }
+//        public Builder setAskId(Long askId) {
+//            this.askId = askId;
+//            return this;
+//        }
 
         public Item build() {return new Item(this);}
     }

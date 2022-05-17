@@ -4,11 +4,10 @@ package com.laioffer.saturn.service;
 
 import com.laioffer.saturn.exception.CanNotAskOwnItemException;
 import com.laioffer.saturn.exception.ItemDoesNotBelongException;
-import com.laioffer.saturn.model.ItemImage;
-import com.laioffer.saturn.model.Status;
-import com.laioffer.saturn.model.User;
+import com.laioffer.saturn.model.*;
 
 
+import com.laioffer.saturn.repository.AskRepository;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,8 +15,6 @@ import com.laioffer.saturn.repository.ItemRepository;
 
 
 import com.laioffer.saturn.exception.ItemNotExistException;
-
-import com.laioffer.saturn.model.Item;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,11 +30,13 @@ import java.util.stream.Collectors;
 public class ItemService {
     private ItemRepository itemRepository;
     private ImageStorageService imageStorageService;
+    private AskRepository askRepository;
 
     @Autowired
-    public ItemService(ItemRepository itemRepository, ImageStorageService imageStorageService) {
+    public ItemService(ItemRepository itemRepository, ImageStorageService imageStorageService, AskRepository askRepository) {
         this.itemRepository = itemRepository;
         this.imageStorageService = imageStorageService;
+        this.askRepository = askRepository;
     }
 
     //Item delete
@@ -99,8 +98,15 @@ public class ItemService {
 
 
 
+
+        Ask ask = new Ask.Builder().setAskBy(principal.getName())
+                        .setItemId(itemId)
+                        .build();
+
+        askRepository.save(ask);
+        //Ask newAsk = askRepository.findAskByItemIdAndAskBy(itemId, principal.getName());
         item.setStatus(Status.ASKED);
-        item.setAskBy(principal.getName());
+        //item.setAskId(newAsk.getId());
         itemRepository.save(item);
     }
 

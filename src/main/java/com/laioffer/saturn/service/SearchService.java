@@ -45,7 +45,15 @@ public class SearchService {
         }
 
         List<Item> itemByPrice = priceRepository.findItemsByPriceBetween(priceMin, priceMax);
-        List<Item> itemByName = itemRepository.findItemByName(name);
+        //Long itemIdByName = customNameRepository.findItemIdContainsName(name);
+
+//        Long itemIdsByName = customNameRepository.findItemIdContainsName(name);
+//
+//        List<Item> itemByName = itemRepository.findItemsById(itemIdsByName);
+
+
+        List<Item> itemByName = itemRepository.findItemByNameContaining(name);
+
 //        List<Long> idByPrice = customPriceRepository.findIdByPrice(priceMin, priceMax);
 //        List<Long> idByName = customNameRepository.findIdByName(name);
 //
@@ -56,8 +64,16 @@ public class SearchService {
 //            }
 //        }
 //
+//        List<Item> filteredItem = new ArrayList<>();
 //
-        return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
+//        for (Item item : itemByPrice) {
+//            if (itemByName.contains(item)) {
+//                filteredItem.add(item);
+//            }
+//        }
+
+        return itemByName;
+        //return priceRepository.findItemsByPriceBetween(priceMin, priceMax);
 
 
     }

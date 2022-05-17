@@ -33,12 +33,7 @@ public class SearchController {
         @RequestParam(name = "priceMax", required = false) Double priceMax){
         //@RequestParam(name = "category") String category,
 
-        //check condition if condition not met throw expection
-//        if (priceMin != null && priceMax != null && priceMin > priceMax) {
-//            throw new InvalidSearchPriceException("Price min must be lower or equal to price max!");
-//        }
 
-        //return searchService.search(itemName, sellerName, loc, priceMin, priceMax, cateogry);
         return searchService.search(itemName,itemDesc, priceMin, priceMax);
     }
 

@@ -8,11 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    List<Item> findItemByName(String name);
+    //List<Item> findItemByName(String name);
 
     List<Item> findItemByUsername(String username);
 
@@ -21,6 +22,11 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Item findItemByIdAndUsername(Long id, String username);
 
     Item findItemById(Long id);
+
+    //added below
+    //List<Item> findItemsById(Long ids);
+
+   List<Item> findItemByNameContaining(String name);
 
     // find the item by the item's id and user (buyer)
     //Item findByIdAndUser(Long id, User user);
