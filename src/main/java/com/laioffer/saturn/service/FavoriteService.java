@@ -1,5 +1,6 @@
 package com.laioffer.saturn.service;
 
+import com.laioffer.saturn.exception.ItemNotExistException;
 import com.laioffer.saturn.model.Favorite;
 import com.laioffer.saturn.model.Item;
 import com.laioffer.saturn.model.User;
@@ -36,7 +37,9 @@ public class FavoriteService {
     public void deleteFavoriteItem(Long itemId, Principal principal) {
 
         Favorite favorite = favoriteRepository.findFavoriteByUsernameAndItemId(principal.getName(),itemId);
-
+        if (favorite == null) {
+            throw new ItemNotExistException("No such item in the database");
+        }
         favoriteRepository.deleteById(favorite.getId());
     }
 
