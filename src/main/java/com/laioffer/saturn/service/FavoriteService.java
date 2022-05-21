@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class FavoriteService {
@@ -41,6 +43,19 @@ public class FavoriteService {
             throw new ItemNotExistException("No such item in the database");
         }
         favoriteRepository.deleteById(favorite.getId());
+    }
+
+    public List<Item> getFavoriteItem(Principal principal) {
+        List<Long> itemIds = favoriteRepository.findItemIdByUsername(principal.getName());
+        List<Item> items = new ArrayList<>();
+
+        for (Long ids : itemIds) {
+            items.add(itemRepository.findItemById(ids));
+
+
+        }
+
+        return items;
     }
 
 

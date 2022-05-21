@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 public class FavoriteController {
@@ -35,6 +36,13 @@ public class FavoriteController {
             Principal principal) {
 
         favoriteService.deleteFavoriteItem(itemId, principal);
+    }
+
+    @GetMapping("/favorite")
+    public List<Item> getFavoriteItem(
+            Principal principal) {
+
+        return favoriteService.getFavoriteItem(principal);
     }
 
 }
