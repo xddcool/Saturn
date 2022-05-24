@@ -96,12 +96,13 @@ public class ItemService {
             throw new CanNotAskOwnItemException("You can't ask your own item");
         }
 
+        Ask ask = askRepository.findAskByItemIdAndAskBy(itemId, principal.getName());
+        if (ask != null) {
+            return;
+        }
+        Ask newAsk = new Ask(item, principal.getName());
 
-
-
-        Ask ask = new Ask(item, principal.getName());
-
-        askRepository.save(ask);
+        askRepository.save(newAsk);
         //Ask newAsk = askRepository.findAskByItemIdAndAskBy(itemId, principal.getName());
         item.setStatus(Status.ASKED);
         //item.setAskId(newAsk.getId());

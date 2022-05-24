@@ -33,11 +33,17 @@ public class FavoriteService {
         if (item == null) {
             throw new ItemNotExistException("No such item in the database");
         }
-        Favorite favoriteItem = new Favorite.Builder().setItem(item)
-                        .setUsername(principal.getName())
-                                .build();
+        Favorite favoriteItem = favoriteRepository.findFavoriteByUsernameAndItemId(principal.getName(), itemId);
 
-        favoriteRepository.save(favoriteItem);
+        if (favoriteItem != null) {
+            return;
+        }
+
+        Favorite newFavoriteItem = new Favorite.Builder().setItem(item)
+                    .setUsername(principal.getName())
+                    .build();
+
+        favoriteRepository.save(newFavoriteItem);
     }
 
     public void deleteFavoriteItem(Long itemId, Principal principal) {
