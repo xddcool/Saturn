@@ -15,6 +15,6 @@ public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 
         //Long findItemIdByUsername(String username);
 
-        @Query(value = "SELECT i.itemId From Favorite i WHERE i.username = ?1")
-        List<Long> findItemIdByUsername(String name);
+        @Query(value = "SELECT i.item From Favorite i WHERE i.username = ?1")
+        List<Item> findItemByUsername(String name);
         }

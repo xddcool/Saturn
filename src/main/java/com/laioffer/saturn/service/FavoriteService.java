@@ -29,7 +29,11 @@ public class FavoriteService {
 
     public void setFavoriteItem(Long itemId, Principal principal) {
 
-        Favorite favoriteItem = new Favorite.Builder().setItemId(itemId)
+        Item item = itemRepository.findItemById(itemId);
+        if (item == null) {
+            throw new ItemNotExistException("No such item in the database");
+        }
+        Favorite favoriteItem = new Favorite.Builder().setItem(item)
                         .setUsername(principal.getName())
                                 .build();
 
@@ -46,15 +50,15 @@ public class FavoriteService {
     }
 
     public List<Item> getFavoriteItem(Principal principal) {
-        List<Long> itemIds = favoriteRepository.findItemIdByUsername(principal.getName());
-        List<Item> items = new ArrayList<>();
-
-        for (Long ids : itemIds) {
-            items.add(itemRepository.findItemById(ids));
-
-
-        }
-
+//        List<Long> itemIds = favoriteRepository.findItemIdByUsername(principal.getName());
+//        List<Item> items = new ArrayList<>();
+//
+//        for (Long ids : itemIds) {
+//            items.add(itemRepository.findItemById(ids));
+//
+//
+//        }
+        List<Item> items = favoriteRepository.findItemByUsername(principal.getName());
         return items;
     }
 

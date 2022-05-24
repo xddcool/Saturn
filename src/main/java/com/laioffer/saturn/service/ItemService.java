@@ -118,7 +118,7 @@ public class ItemService {
         }
 
         if (!item.getUsername().equals(principal.getName())) {
-            throw new CanNotAskOwnItemException("You can't sell your other people's item");
+            throw new CanNotAskOwnItemException("You can't sell other people's item");
         }
 
         item.setStatus(Status.SOLD);

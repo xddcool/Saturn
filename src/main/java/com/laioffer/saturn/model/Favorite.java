@@ -1,6 +1,7 @@
 package com.laioffer.saturn.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -20,6 +21,11 @@ public class Favorite implements Serializable {
 
     private String username;
 
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    @JsonIgnore
+    private Item item;
+
     public Long getId() {
         return id;
     }
@@ -28,9 +34,10 @@ public class Favorite implements Serializable {
         this.id = id;
     }
 
-    @JsonProperty("item_id")
-    //@Column(name = "itemId")
-    private Long itemId;
+
+//    @JsonProperty("item_id")
+//    //@Column(name = "itemId")
+//    private Long itemId;
 
     public String getUsername() {
         return username;
@@ -40,37 +47,52 @@ public class Favorite implements Serializable {
         this.username = username;
     }
 
-    public Long getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setItem(Item item) {
+        this.item = item;
     }
+
+    //    public Long getItemId() {
+//        return itemId;
+//    }
+//
+//    public void setItemId(Long itemId) {
+//        this.itemId = itemId;
+//    }
 
     public Favorite() {}
 
     public Favorite(Builder builder) {
         this.username = builder.username;
-        this.itemId = builder.itemId;
+        this.item = builder.item;
+        //this.itemId = builder.itemId;
     }
 
     public static class Builder {
         @JsonProperty("username")
         private String username;
 
-        @JsonProperty("item_id")
-        private Long itemId;
+//        @JsonProperty("item_id")
+//        private Long itemId;
+        private Item item;
+
+        public Builder setItem(Item item) {
+            this.item = item;
+            return this;
+        }
 
         public Builder setUsername(String username) {
             this.username = username;
             return this;
         }
 
-        public Builder setItemId(Long itemId) {
-            this.itemId = itemId;
-            return this;
-        }
+//        public Builder setItemId(Long itemId) {
+//            this.itemId = itemId;
+//            return this;
+//        }
 
         public Favorite build() {
             return new Favorite(this);

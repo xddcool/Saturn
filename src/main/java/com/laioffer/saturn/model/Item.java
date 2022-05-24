@@ -44,6 +44,9 @@ public class Item implements Serializable {
     private List<Ask> asks;
     //private Long askId;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Favorite> favorites;
+
     public Item() {}
 
     private Item(Builder builder) {
