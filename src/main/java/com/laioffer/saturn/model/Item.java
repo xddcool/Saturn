@@ -40,6 +40,8 @@ public class Item implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    private List<Ask> asks;
     //private Long askId;
 
     public Item() {}
@@ -110,6 +112,13 @@ public class Item implements Serializable {
         return this;
     }
 
+    public List<Ask> getAsks() {
+        return asks;
+    }
+
+    public void setAsks(List<Ask> asks) {
+        this.asks = asks;
+    }
 //    public Long getAskId() {
 //        return askId;
 //    }

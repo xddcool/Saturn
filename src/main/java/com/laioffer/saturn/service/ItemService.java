@@ -99,9 +99,7 @@ public class ItemService {
 
 
 
-        Ask ask = new Ask.Builder().setAskBy(principal.getName())
-                        .setItemId(itemId)
-                        .build();
+        Ask ask = new Ask(item, principal.getName());
 
         askRepository.save(ask);
         //Ask newAsk = askRepository.findAskByItemIdAndAskBy(itemId, principal.getName());
