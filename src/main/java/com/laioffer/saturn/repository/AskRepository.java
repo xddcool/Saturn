@@ -17,5 +17,8 @@ public interface AskRepository extends JpaRepository<Ask, Long> {
     @Query(value = "SELECT i.item From Ask i WHERE i.askBy = ?1")
     List<Item> findItemByAskBy(String askBy);
 
-
+    @Query(value = "SELECT i.item From Ask i where i.id = ?1")
+    Item findItemByAsk(Long askId);
+//    Item item findItemByAsk(Long askId);
+    List<Ask> findAskByItem(Item item);
 }
